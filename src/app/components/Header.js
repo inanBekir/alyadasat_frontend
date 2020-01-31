@@ -1,28 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/Header.scss'
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom'
 
-var isLoggedIn;
-export class  Header extends Component {
-    handleLogoutClick() {
-        isLoggedIn = localStorage.removeItem('userToken');
+export function Header(){
+    const userToken = localStorage.getItem('token');
+    const [token] = useState(userToken);
+
+    function logout(){
+        localStorage.removeItem('token');
+        window.location.reload(false);
     }
-    render() {
-        isLoggedIn = localStorage.getItem('userToken');
-        let signIn, signUp;
-    
-        if (isLoggedIn != null) {
-            signIn = <NavLink to="/" onClick={this.handleLogoutClick}>Logout</NavLink>
-        } else {
-            signIn = <NavLink to="/signin"  activeStyle={{color: 'red'}}>Signin</NavLink>
-            signUp = <NavLink to="/signup"  activeStyle={{color: 'red'}}>Signup</NavLink>
-        }
     
     return(
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">ALyadaSat</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -38,10 +31,14 @@ export class  Header extends Component {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
             </Form>
-            {signIn}
-            {signUp}
+            {
+                token !== null ? <NavLink className="btn btn-danger" to="/" onClick={() => logout()}>Logout</NavLink> : <React.Fragment>
+                    <NavLink to="/signin" className="btn btn-warning"  activeStyle={{color: 'red'}}>Signin</NavLink>
+                    <NavLink to="/signup" className="btn btn-primary" activeStyle={{color: 'red'}}>Signup</NavLink>
+                </React.Fragment>
+            }
+            
         </Navbar.Collapse>
         </Navbar>
     );
-}
 }

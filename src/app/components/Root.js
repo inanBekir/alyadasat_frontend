@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-
+import '../../scss/App.scss'
 import {Header} from './Header';
 
 export class Root extends Component {

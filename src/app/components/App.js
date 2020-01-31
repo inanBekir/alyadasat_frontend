@@ -3,7 +3,7 @@ import '../../scss/App.scss';
 import {BrowserRouter, Route} from 'react-router-dom'
 
 import {Root} from './Root';
-import {Home} from './Home';
+import {Index} from './Products/Index';
 import {Signup} from './auth/Signup';
 import {Signin} from './auth/Signin';
 
@@ -12,7 +12,7 @@ class App extends Component {
   return (
    <BrowserRouter>
             <Root>
-                <Route exact path={"/"} component={Home}/>
+                <Route exact path={"/"} component={Index}/>
                 <Route path={"/signup"} component={Signup}/>
                 <Route path={"/signin"} component={Signin}/>
             </Root>

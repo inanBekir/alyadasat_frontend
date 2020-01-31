@@ -35,8 +35,9 @@ export class Signin extends Component {
       })
       .then(res => {
         if (res.status === 200) {
-          localStorage.setItem('userToken', res.data.auth_token);
+          localStorage.setItem('token', JSON.stringify(res.data.auth_token));
           this.props.history.push("/");
+          window.location.reload(false);
       }
       })
       .catch(err => console.log(err));
