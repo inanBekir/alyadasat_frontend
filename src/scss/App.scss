@@ -1,10 +1,8 @@
-.App {
-  text-align: center;
+#card{
+  display: inline-block;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card{
+  margin: 35px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
