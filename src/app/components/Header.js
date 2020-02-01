@@ -32,9 +32,14 @@ export function Header(){
             <Button variant="outline-success">Search</Button>
             </Form>
             {
-                token !== null ? <NavLink className="btn btn-danger" to="/" onClick={() => logout()}>Logout</NavLink> : <React.Fragment>
-                    <NavLink to="/signin" className="btn btn-warning"  activeStyle={{color: 'red'}}>Signin</NavLink>
-                    <NavLink to="/signup" className="btn btn-primary" activeStyle={{color: 'red'}}>Signup</NavLink>
+                token !== null ? 
+                <React.Fragment>
+                <NavLink className="btn btn-info" to="/">Ürün Sat</NavLink> 
+                <NavLink className="btn btn-danger" to="/" onClick={() => logout()}>Çıkış Yap</NavLink>  
+                </React.Fragment> :
+                <React.Fragment>
+                    <NavLink to="/signin" className="btn btn-warning"  activeStyle={{color: 'red'}}>Giriş yap</NavLink>
+                    <NavLink to="/signup" className="btn btn-primary" activeStyle={{color: 'red'}}>Kayıt Ol</NavLink>
                 </React.Fragment>
             }
             

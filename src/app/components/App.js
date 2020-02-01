@@ -6,6 +6,7 @@ import {Root} from './Root';
 import {Index} from './Products/Index';
 import {Signup} from './auth/Signup';
 import {Signin} from './auth/Signin';
+import {Show} from './Products/Show';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
    <BrowserRouter>
             <Root>
                 <Route exact path={"/"} component={Index}/>
+                <Route path={"/show"} component={Show}/>
                 <Route path={"/signup"} component={Signup}/>
                 <Route path={"/signin"} component={Signin}/>
             </Root>
