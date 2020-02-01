@@ -10,3 +10,11 @@ a{
 .btn{
     margin-right: 10px;
 }
+.navbar{
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1060;
+}

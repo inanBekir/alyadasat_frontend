@@ -34,7 +34,7 @@ export function Index() {
 
   function TodoList({ items }) {
     return items.map(item => (
-      <Card id="card" border="primary" style={{ width: '18rem' }}>
+      <Card key={item.id} id="card" border="primary" style={{ width: '18rem' }}>
       <Card.Img variant="top" src="logo192.png" />
       <hr/>
       <Card.Body>
