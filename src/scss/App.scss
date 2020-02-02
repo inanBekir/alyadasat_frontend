@@ -4,7 +4,9 @@
 .card{
   margin: 40px 20px;
 }
-
+.row{
+  justify-content: center;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

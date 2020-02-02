@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 export function Show(props)  {
   const userToken = localStorage.getItem('token');
@@ -33,7 +34,8 @@ export function Show(props)  {
     }
   });
 
-  
+  const history = useHistory();
+  const goUpdate = (param) => history.push('update',{param: param});
   
   return (
     <Card id="card" border="primary" style={{ width: '18rem' }}>
@@ -44,7 +46,8 @@ export function Show(props)  {
       <Card.Text>{product.description}</Card.Text>
       <Card.Text>{product.price}</Card.Text>
       <Button variant="primary">Go somewhere</Button>
-    </Card.Body>
-  </Card>
+      <Button variant="primary" onClick={() => goUpdate(product.id)}>Go edit</Button>
+      </Card.Body>
+    </Card>
   );
 }

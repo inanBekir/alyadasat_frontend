@@ -31,10 +31,10 @@ export function Header(){
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
             </Form>
+            <NavLink className="btn btn-info" to="/create">Ürün Sat</NavLink> 
             {
                 token !== null ? 
                 <React.Fragment>
-                <NavLink className="btn btn-info" to="/">Ürün Sat</NavLink> 
                 <NavLink className="btn btn-danger" to="/" onClick={() => logout()}>Çıkış Yap</NavLink>  
                 </React.Fragment> :
                 <React.Fragment>
@@ -42,7 +42,6 @@ export function Header(){
                     <NavLink to="/signup" className="btn btn-primary" activeStyle={{color: 'red'}}>Kayıt Ol</NavLink>
                 </React.Fragment>
             }
-            
         </Navbar.Collapse>
         </Navbar>
     );
