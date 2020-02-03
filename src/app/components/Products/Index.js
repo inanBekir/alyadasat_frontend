@@ -30,6 +30,7 @@ export function Index() {
   useEffect(() => {
     if(products !== global.result){
       getProducts();
+      console.log(token);
     }
   });
 

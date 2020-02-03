@@ -7,6 +7,8 @@ import {Index} from './Products/Index';
 import {Signup} from './auth/Signup';
 import {Signin} from './auth/Signin';
 import {Show} from './Products/Show';
+import {Create} from './Products/Create';
+import {Update} from './Products/Update';
 
 class App extends Component {
   render() {
@@ -15,6 +17,8 @@ class App extends Component {
             <Root>
                 <Route exact path={"/"} component={Index}/>
                 <Route path={"/show"} component={Show}/>
+                <Route path={"/create"} component={Create}/>
+                <Route path={"/update"} component={Update}/>
                 <Route path={"/signup"} component={Signup}/>
                 <Route path={"/signin"} component={Signin}/>
             </Root>
