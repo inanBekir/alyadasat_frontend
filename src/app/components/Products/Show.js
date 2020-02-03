@@ -6,10 +6,32 @@ import { useHistory } from "react-router-dom";
 
 export function Show(props)  {
   const userToken = localStorage.getItem('token');
+  const userId = localStorage.getItem('current_user');
+  const [current_user] = useState(userId);
   const [token] = useState(userToken);
   const [product, setProduct] = useState({title:'default'});
   global.id = props.location.state.param;
   
+  function deleteProduct(){
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+    axios.delete('http://localhost:3000/v1/products/'+ global.id,
+      {            
+        headers: headers
+      })
+      .then(res => {
+        if (res.status === 200) {
+         return (
+          history.push('/'),
+          alert("Product Deleted")
+         );
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   function getProduct(){
     const headers = {
       'Content-Type': 'application/json',
@@ -47,7 +69,9 @@ export function Show(props)  {
       <Card.Text>{product.price}</Card.Text>
       <Button variant="primary">Go somewhere</Button>
       <Button variant="primary" onClick={() => goUpdate(product.id)}>Go edit</Button>
+      { product.user_id === parseInt(current_user) ? <Button variant="danger" onClick={() => deleteProduct()}>Go delete</Button> : null}
       </Card.Body>
+      <p>{product.user_id +" + " +current_user}</p>
     </Card>
   );
 }
