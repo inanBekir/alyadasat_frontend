@@ -10,14 +10,17 @@ export function Show(props)  {
   const [current_user] = useState(userId);
   const [token] = useState(userToken);
   const [product, setProduct] = useState({title:'default'});
-  global.id = props.location.state.param;
+  const [globalId, setGlobalId] = useState(props.location.state.param);
+  const history = useHistory();
+  const goUpdate = (param) => history.push('update',{param: param});
   
   function deleteProduct(){
+    setGlobalId();
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     }
-    axios.delete('http://localhost:3000/v1/products/'+ global.id,
+    axios.delete('http://localhost:3000/v1/products/'+ globalId,
       {            
         headers: headers
       })
@@ -37,7 +40,7 @@ export function Show(props)  {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     }
-    axios.get('http://localhost:3000/v1/products/'+ global.id,
+    axios.get('http://localhost:3000/v1/products/'+ globalId,
       {            
         headers: headers
       })
@@ -55,9 +58,6 @@ export function Show(props)  {
       getProduct();
     }
   });
-
-  const history = useHistory();
-  const goUpdate = (param) => history.push('update',{param: param});
   
   return (
     <Card id="card" border="primary" style={{ width: '18rem' }}>
@@ -71,7 +71,6 @@ export function Show(props)  {
       <Button variant="primary" onClick={() => goUpdate(product.id)}>Go edit</Button>
       { product.user_id === parseInt(current_user) ? <Button variant="danger" onClick={() => deleteProduct()}>Go delete</Button> : null}
       </Card.Body>
-      <p>{product.user_id +" + " +current_user}</p>
     </Card>
   );
 }

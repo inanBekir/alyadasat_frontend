@@ -9,6 +9,7 @@ import {Signin} from './auth/Signin';
 import {Show} from './Products/Show';
 import {Create} from './Products/Create';
 import {Update} from './Products/Update';
+import {Search} from './Products/Search';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
                 <Route path={"/show"} component={Show}/>
                 <Route path={"/create"} component={Create}/>
                 <Route path={"/update"} component={Update}/>
+                <Route path={"/search"} component={Search}/>
                 <Route path={"/signup"} component={Signup}/>
                 <Route path={"/signin"} component={Signin}/>
             </Root>

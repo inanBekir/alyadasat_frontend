@@ -2,16 +2,29 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/Header.scss'
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
-import {NavLink} from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 export function Header(){
     const userToken = localStorage.getItem('token');
     const [token] = useState(userToken);
+    const [term, setTerm] = useState('');
+    const history = useHistory();
 
     function logout(){
         localStorage.removeItem('token');
         window.location.reload(false);
     }
+
+    function onTermChange(e){
+        setTerm(e.target.value);
+    };
+
+    function handleSubmit(e){
+        e.preventDefault();
+        
+        history.push('search',{term: term});
+        window.location.reload(false);
+    };
     
     return(
         <Navbar bg="light" expand="lg">
@@ -27,9 +40,9 @@ export function Header(){
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
             </Nav>
-            <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+            <Form inline onSubmit={handleSubmit}>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={onTermChange} />
+            <Button variant="outline-success" type="submit">Search</Button>
             </Form>
             <NavLink className="btn btn-info" to="/create">Ürün Sat</NavLink> 
             {
